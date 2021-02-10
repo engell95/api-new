@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\Post as PostRequest;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +35,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //
         $post = Post::create([
@@ -53,6 +54,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return response()->json($post);
     }
 
     /**
@@ -73,7 +75,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //
     }
