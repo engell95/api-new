@@ -80,4 +80,18 @@ class PostControllerTest extends TestCase
         $this->assertDatabaseMissing('posts',['id'=>$post->id]); // se revisa si el id existe en la tabla post
     }
 
+    public function test_index(){
+        $this->withExceptionHandling();
+
+        $post = factory(Post::class, 15)->create();
+
+        $response = $this->json('GET','/api/posts');
+
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => ['id','title','created_at','updated_at']
+            ]
+        ])->assertStatus(200);
+    }
+
 }

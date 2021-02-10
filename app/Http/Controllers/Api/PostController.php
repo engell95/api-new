@@ -17,6 +17,9 @@ class PostController extends Controller
     public function index()
     {
         //
+        $post = Post::paginate();
+
+        return response()->json($post,200);
     }
 
     /**
